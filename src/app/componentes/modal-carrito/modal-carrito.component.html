@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        <i class="fas fa-shopping-cart"></i> Carrito de Compras
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalActivo.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let i of carrito.productos" class="list-group-item d-flex justify-content-start">
+            <div>
+                <img style="width: 100px;" class="img-fluid" src="{{'https://'+ i.producto.image}}" alt="">
+            </div>
+            <div class="w-100">
+                <p>
+                    <strong>{{i.producto.brand}}</strong> <br>
+                    {{i.producto.description}} <br>
+                    <strong>Cantidad: {{i.cantidad}}</strong>
+                </p>
+            </div>
+            <div class="flex-fill">
+                <strong>{{i.total | currency: '$':'symbol':'0.0'}}</strong> <br>
+                <small>Valor Unidad {{i.producto.price | currency: '$':'symbol':'0.0'}}</small>
+            </div>
+            <div>
+                <button (click)="eliminarProducto(i.producto._id, 1)" class="btn btn-light">
+                    Eliminar
+                </button>
+            </div>
+        </li>
+    </ul>
+    <div class="card">
+        <div class="card-body">
+
+            <div *ngIf="carrito.mensaje" class="d-flex flex-row justify-content-between mx-3 alert alert-primary">
+                <span>{{carrito.mensaje}}</span>
+            </div>
+            <div class="d-flex flex-row justify-content-between mx-3">
+                <span>
+                    Sub Total de productos 
+                </span>
+                <span>{{carrito.sub_total | currency: '$':'symbol':'0.0' }}</span>
+            </div>
+            <div *ngIf="carrito.descuento.valor !== 0" class="d-flex flex-row justify-content-between mx-3">
+                <span>
+                    Descuento por marca
+                </span>
+                <span>{{carrito.descuento.valor | currency: '$':'symbol':'0.0' }}</span>
+            </div>
+            <div *ngIf="carrito.descuento.valor !== 0" class="d-flex flex-row justify-content-between mx-3 alert alert-success">
+                <span>{{carrito.descuento.mensaje}}</span>
+            </div>
+        
+            <div class="d-flex flex-row justify-content-between mx-3">
+                <strong>
+                    Total a pagar
+                </strong>
+                <strong>{{carrito.total| currency: '$':'symbol':'0.0' }}</strong>
+            </div>
+
+        </div>
+    </div>
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modalActivo.close('Save click')">Cerrar</button>
+  </div>

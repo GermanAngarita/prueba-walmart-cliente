@@ -1,0 +1,20 @@
+
+<div class="card mt-3">
+    <img src="{{'https://'+producto.image}}" class="card-img-top img-fluid" alt="...">
+    <div class="card-body">
+        <p class="card-text">{{producto.description}}</p>
+        <p class="text-truncate">
+            <strong> {{producto.price | currency: '$ ':'symbol':'0.0'}} <span class="badge rounded-pill bg-danger">22%</span> </strong> <br>
+            <small class="text-decoration-line-through">$400000</small>
+        </p>
+
+        <div class="w-100 my-1">
+            <span class="badge bg-primary"> <i class="fas fa-truck-moving"></i> Despacho</span>
+            <span class="badge bg-secondary mx-2"> <i class="fas fa-home"></i> Retiro</span> 
+        </div>      
+        <button (click)="agregarProducto()" class="btn btn-outline-primary btn-block w-100">
+            Agregar
+        </button>
+    </div>
+    
+</div>

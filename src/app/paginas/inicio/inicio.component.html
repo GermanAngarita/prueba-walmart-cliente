@@ -1,0 +1,18 @@
+<app-barra-navegacion (busqueda)="buscarProducto( $event )"></app-barra-navegacion>
+
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div *ngFor="let i of productos" class="col-lg-3 col-md-4 col-sm-6 clearfix">
+            <app-tarjeta-producto [producto]="i"></app-tarjeta-producto>
+        </div>
+    </div>
+</div>
+
+<ngb-pagination
+    [collectionSize]="total" 
+    [pageSize]="filtro.limite"
+    (pageChange)="cambiarPagina( $event )"
+    [(page)]="pagina" 
+    aria-label="Default pagination">
+</ngb-pagination>
+
